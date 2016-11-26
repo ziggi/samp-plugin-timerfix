@@ -168,7 +168,7 @@ cell AMX_NATIVE_CALL Natives::SetPlayerTimerEx_(AMX *amx, cell *params)
 
 cell AMX_NATIVE_CALL Natives::GetTimerFunctionName(AMX *amx, cell *params)
 {
-	if (params[0] < 2 * CELL_SIZE)
+	if (params[0] < 3 * CELL_SIZE)
     {
         return 0;
     }
@@ -178,8 +178,8 @@ cell AMX_NATIVE_CALL Natives::GetTimerFunctionName(AMX *amx, cell *params)
         amx_SetCString(amx, params[2], "", 1); // "\0"
         return 0;
     }
-    // TODO: Consider using an additional `len` parameter to avoids overflows.
-    amx_SetCString(amx, params[2], timers[id]->func, strlen(timers[id]->func));
+    int maxlength = params[3];
+    amx_SetCString(amx, params[2], timers[id]->func, maxlength);
     return 1;
 }
 
@@ -193,6 +193,20 @@ cell AMX_NATIVE_CALL Natives::SetTimerInterval(AMX *amx, cell *params)
 	if (TimerExists(id))
     {
         timers[id]->interval = interval;
+        timers[id]->next = GetMsTime() + interval;
+    }
+    return 1;
+}
+
+cell AMX_NATIVE_CALL Natives::SetTimerIntervalLeft(AMX *amx, cell *params)
+{
+    if (params[0] < 2 * CELL_SIZE)
+    {
+        return 0;
+    }
+    int id = params[1], interval = params[2];
+    if (TimerExists(id))
+    {
         timers[id]->next = GetMsTime() + interval;
     }
     return 1;
