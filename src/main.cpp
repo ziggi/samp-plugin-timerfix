@@ -49,6 +49,7 @@ const AMX_NATIVE_INFO NATIVES[] =
     {"SetPlayerTimerEx_", Natives::SetPlayerTimerEx_},
     {"GetTimerFunctionName", Natives::GetTimerFunctionName},
     {"SetTimerInterval", Natives::SetTimerInterval},
+    {"SetTimerIntervalLeft", Natives::SetTimerIntervalLeft},
     {"GetTimerInterval", Natives::GetTimerInterval},
     {"GetTimerIntervalLeft", Natives::GetTimerIntervalLeft},
     {"SetTimerDelay", Natives::SetTimerDelay},

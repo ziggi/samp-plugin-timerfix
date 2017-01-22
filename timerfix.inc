@@ -24,7 +24,7 @@
  */
 
 /**
- * <version>1.5</version>
+ * <version>1.6</version>
  * <remarks>Supported parameters:
  * 		a, A = arrays (must be followed by an integer - array's szie);
  * 		b, B = boolean; c, C = character; d, D, i, I = integer;
@@ -156,8 +156,9 @@ native SetPlayerTimerEx_(playerid, func[], interval, delay, count, format[], {Fl
  * <summary>Gets the name of the function that is called.</summary>
  * <param name="timerid">The ID of the timer.</param>
  * <param name="func">The name of the function.</param>
+ * <param name="maxlength">Maximum length of the returned function name.</param>
  */
-native GetTimerFunctionName(timerid, func[]);
+native GetTimerFunctionName(timerid, func[], maxlength = sizeof(func));
 
 /**
  * <summary>Sets the interval of a timer.</summary>
@@ -165,6 +166,13 @@ native GetTimerFunctionName(timerid, func[]);
  * <param name="interval">The new interval.</param>
  */
 native SetTimerInterval(timerid, interval);
+
+/**
+ * <summary>Sets the time remaining before this timer is called again.</summary>
+ * <param name="timerid">The ID of the timer.</param>
+ * <param name="interval">The new interval.</param>
+ */
+native SetTimerIntervalLeft(timerid, interval);
 
 /**
  * <summary>Gets the interval of a timer.</summary>

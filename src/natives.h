@@ -46,6 +46,7 @@ public:
     static cell AMX_NATIVE_CALL SetPlayerTimerEx_(AMX *amx, cell *params);
     static cell AMX_NATIVE_CALL GetTimerFunctionName(AMX *amx, cell *params);
     static cell AMX_NATIVE_CALL SetTimerInterval(AMX *amx, cell *params);
+    static cell AMX_NATIVE_CALL SetTimerIntervalLeft(AMX *amx, cell *params);
     static cell AMX_NATIVE_CALL GetTimerInterval(AMX *amx, cell *params);
     static cell AMX_NATIVE_CALL GetTimerIntervalLeft(AMX *amx, cell *params);
     static cell AMX_NATIVE_CALL SetTimerDelay(AMX *amx, cell *params);
