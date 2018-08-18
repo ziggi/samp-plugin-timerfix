@@ -56,6 +56,7 @@ const AMX_NATIVE_INFO PluginNatives[] =
 	{"SetTimerCount", Natives::SetTimerCount},
 	{"GetTimerCallsLeft", Natives::GetTimerCallsLeft},
 	{"IsValidTimer", Natives::IsValidTimer},
+
 	{NULL, NULL}
 };
 
@@ -66,7 +67,7 @@ PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 {
-	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
+	logprintf = reinterpret_cast<logprintf_t>(ppData[PLUGIN_DATA_LOGPRINTF]);
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	InitTime();
 	logprintf("  >> TimerFix " PLUGIN_VERSION " successfully loaded.");
@@ -85,8 +86,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)
 {
-	for (std::map<int, struct timer*>::iterator it = timers.begin(), next = it; it != timers.end(); it = next) {
-		++next;
+	for (auto it = timers.begin(); it != timers.end(); ++it) {
 		struct timer *t = it->second;
 		if (t->amx == amx) {
 			DestroyTimer(t);
@@ -104,8 +104,7 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload()
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 {
 	unsigned long long now = GetMsTime();
-	for (std::map<int, struct timer*>::iterator it = timers.begin(), next = it; it != timers.end(); it = next) {
-		++next;
+	for (auto it = timers.begin(); it != timers.end(); ++it) {
 		struct timer *t = it->second;
 		if (t->repeat != 0) {
 			if (t->next < now) {
