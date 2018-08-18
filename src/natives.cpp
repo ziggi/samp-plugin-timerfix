@@ -47,7 +47,7 @@ cell AMX_NATIVE_CALL Natives::IsValidTimer(AMX *amx, cell *params)
 	if (TimerExists(id)) {
 		return timers[id]->repeat;
 	}
-	return false;
+	return 0;
 }
 
 cell AMX_NATIVE_CALL Natives::GetActiveTimers(AMX *amx, cell *params)

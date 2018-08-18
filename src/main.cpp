@@ -27,9 +27,9 @@
 
 #include <map>
 
-#include "sdk/amx/amx.h"
+#define HAVE_STDINT_H
+#include "sdk/plugin.h"
 #include "sdk/amx/amx2.h"
-#include "sdk/plugincommon.h"
 
 #include "time.h"
 #include "timers.h"
@@ -38,7 +38,7 @@
 extern void *pAMXFunctions;
 logprintf_t logprintf;
 
-const AMX_NATIVE_INFO NATIVES[] =
+const AMX_NATIVE_INFO PluginNatives[] =
 {
 	{"KillPlayerTimers", Natives::KillPlayerTimers},
 	{"SetTimer_", Natives::SetTimer_},
@@ -75,11 +75,12 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
-	amx_Redirect(amx, "SetTimer", (ucell)Natives::SetTimer, NULL);
-	amx_Redirect(amx, "SetTimerEx", (ucell)Natives::SetTimerEx, NULL);
-	amx_Redirect(amx, "KillTimer", (ucell)Natives::KillTimer, NULL);
-	amx_Redirect(amx, "GetTickCount", (ucell)Natives::GetTickCount, NULL);
-	return amx_Register(amx, NATIVES, -1);
+	amx_Redirect(amx, "SetTimer", reinterpret_cast<ucell>(Natives::SetTimer), NULL);
+	amx_Redirect(amx, "SetTimerEx", reinterpret_cast<ucell>(Natives::SetTimerEx), NULL);
+	amx_Redirect(amx, "KillTimer", reinterpret_cast<ucell>(Natives::KillTimer), NULL);
+	amx_Redirect(amx, "GetTickCount", reinterpret_cast<ucell>(Natives::GetTickCount), NULL);
+
+	return amx_Register(amx, PluginNatives, -1);
 }
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx)

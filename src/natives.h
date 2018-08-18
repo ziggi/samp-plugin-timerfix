@@ -25,6 +25,7 @@
 
 #pragma once
 
+#define HAVE_STDINT_H
 #include "sdk/amx/amx.h"
 #include "sdk/amx/amx2.h"
 
