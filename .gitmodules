@@ -1,3 +1,0 @@
-[submodule "src/sdk"]
-	path = src/sdk
-	url = git://github.com/udan11/samp-plugin-sdk.git
