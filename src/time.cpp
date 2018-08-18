@@ -35,31 +35,30 @@ struct timespec startTime;
 void InitTime()
 {
 #ifdef WIN32
-    LARGE_INTEGER t;
-    QueryPerformanceFrequency(&t);
-    freq = t.QuadPart / 1000;
-    QueryPerformanceCounter(&startTime);
+	LARGE_INTEGER t;
+	QueryPerformanceFrequency(&t);
+	freq = t.QuadPart / 1000;
+	QueryPerformanceCounter(&startTime);
 #else
-    clock_gettime(CLOCK_MONOTONIC, &startTime);
+	clock_gettime(CLOCK_MONOTONIC, &startTime);
 #endif
 }
 
 unsigned long long GetMsTime()
 {
 #ifdef WIN32
-    LARGE_INTEGER t;
-    QueryPerformanceCounter(&t);
-    return (t.QuadPart - startTime.QuadPart) / freq;
+	LARGE_INTEGER t;
+	QueryPerformanceCounter(&t);
+	return (t.QuadPart - startTime.QuadPart) / freq;
 #else
-    struct timespec t;
-    clock_gettime(CLOCK_MONOTONIC, &t);
-    t.tv_sec -= startTime.tv_sec;
-    t.tv_nsec -= startTime.tv_nsec;
-    if (t.tv_nsec < 0)
-    {
-        t.tv_sec -= 1;
-        t.tv_nsec += 1000000000;
-    }
-    return t.tv_sec * 1000 + t.tv_nsec / 1000000;
+	struct timespec t;
+	clock_gettime(CLOCK_MONOTONIC, &t);
+	t.tv_sec -= startTime.tv_sec;
+	t.tv_nsec -= startTime.tv_nsec;
+	if (t.tv_nsec < 0) {
+		t.tv_sec -= 1;
+		t.tv_nsec += 1000000000;
+	}
+	return t.tv_sec * 1000 + t.tv_nsec / 1000000;
 #endif
 }

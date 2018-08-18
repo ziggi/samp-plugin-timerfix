@@ -37,6 +37,6 @@
 
 #define INVALID_PLAYER_ID               0xFFFF
 
-typedef void (*logprintf_t)(char*, ...);
+typedef void(*logprintf_t)(char*, ...);
 
 extern logprintf_t logprintf;

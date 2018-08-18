@@ -33,13 +33,13 @@
 
 struct timer
 {
-    AMX *amx;
-    int id, playerid, funcidx, interval, repeat;
-    unsigned long long next;
-    char *func, *format;
-    std::vector<std::pair<cell*, int> > params_a;
-    std::vector<cell> params_c;
-    std::vector<char*> params_s;
+	AMX *amx;
+	int id, playerid, funcidx, interval, repeat;
+	unsigned long long next;
+	char *func, *format;
+	std::vector<std::pair<cell*, int> > params_a;
+	std::vector<cell> params_c;
+	std::vector<char*> params_s;
 };
 
 extern std::map<int, struct timer*> timers;
