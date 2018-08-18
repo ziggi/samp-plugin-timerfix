@@ -1,6 +1,6 @@
 SA-MP Plugin - Timerfix
 =======================
-[![Build Status](https://travis-ci.org/SAMP-git/samp-plugin-timerfix.svg?branch=master)](https://travis-ci.org/SAMP-git/samp-plugin-timerfix)
+[![Build Status](https://travis-ci.org/ziggi/samp-plugin-timerfix.svg?branch=master)](https://travis-ci.org/ziggi/samp-plugin-timerfix)
 
 Timerfix provides an improvement (increases the accuracy) to the timers system existent in SA-MP server.
 
