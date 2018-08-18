@@ -45,7 +45,7 @@ cell AMX_NATIVE_CALL Natives::IsValidTimer(AMX *amx, cell *params)
 	}
 	int id = params[1];
 	if (TimerExists(id)) {
-		return timers[id]->repeat;
+		return timers[id]->repeat == -1 || timers[id]->repeat > 0;
 	}
 	return 0;
 }
@@ -75,8 +75,7 @@ cell AMX_NATIVE_CALL Natives::KillPlayerTimers(AMX *amx, cell *params)
 	}
 	int playerid = params[1];
 	if (playerid != INVALID_PLAYER_ID) {
-		for (std::map<int, struct timer*>::iterator it = timers.begin(), next = it; it != timers.end(); it = next) {
-			++next;
+		for (auto it = timers.begin(); it != timers.end(); ++it) {
 			struct timer *t = it->second;
 			if (t->playerid == playerid) {
 				t->repeat = 0;
