@@ -69,9 +69,24 @@ int CreateTimer(AMX *amx, cell playerid, cell funcname, cell interval, cell dela
 			switch (t->format[i]) {
 				case 'a':
 				case 'A':
+					if (t->format[i + 1] == 0) {
+						logprintf("[plugin.timerfix] %s: Format '%c' is not correct. Expected 'i' or 'd', but found nothin.", t->func, t->format[i]);
+						DestroyTimer(t);
+						return 0;
+					}
+					if (t->format[i + 1] != 'i' && t->format[i + 1] != 'I' && t->format[i + 1] != 'd' && t->format[i + 1] != 'D') {
+						logprintf("[plugin.timerfix] %s: Format '%c' is not correct. Expected 'i' or 'd', but found '%c'.", t->func, t->format[i], t->format[i + 1]);
+						DestroyTimer(t);
+						return 0;
+					}
 					cell * ptr_arr, *ptr_len, *arr, len;
 					amx_GetAddr(amx, params[p], &ptr_arr);
 					amx_GetAddr(amx, params[p + 1], &ptr_len);
+					if (*ptr_len < 0) {
+						logprintf("[plugin.timerfix] %s: Array size is lower than 0.", t->func);
+						DestroyTimer(t);
+						return 0;
+					}
 					len = sizeof(cell)* (*ptr_len);
 					arr = (cell*)malloc(len);
 					if (arr != NULL) {
