@@ -1,24 +1,24 @@
 {
-    "user": "SAMP-git",
+    "user": "ziggi",
     "repo": "samp-plugin-timerfix",
     "resources": [
         {
-            "name": "^timerfix-(.*)-linux.tar.gz$",
+            "name": "^timerfix-(.*).zip$",
             "platform": "linux",
             "archive": true,
             "includes": ["."],
             "plugins": ["timerfix.so"]
         },
         {
-            "name": "^timerfix-(.*)-win32.zip$",
+            "name": "^timerfix-(.*).zip$",
             "platform": "windows",
             "archive": true,
             "includes": ["."],
             "plugins": ["timerfix.dll"]
         }
     ],
-    "contributors": ["udan11", "IstuntmanI"],
+    "contributors": ["udan11", "IstuntmanI", "ziggi"],
     "runtime": {
-        "plugins": ["SAMP-git/timerfix"]
+        "plugins": ["ziggi/timerfix"]
     }
 }

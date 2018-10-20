@@ -23,20 +23,16 @@
 
 .PHONY: build clean
 
-ifndef GXX
-	GXX = g++
-endif
-
-COMPILE_FLAGS = -c -fPIC -m32 -O3 -w -Wall -Isrc/sdk/amx/ -DLINUX
+COMPILE_FLAGS = -c -fPIC -m32 -O3 -w -Wall -Isrc/sdk/amx/ -DLINUX -std=c++11
 LIBRARIES = -lrt
 
 OUTFILE = bin/timerfix.so
 
 build:
 	mkdir -p bin
-	$(GXX) $(COMPILE_FLAGS) src/sdk/*.cpp
-	$(GXX) $(COMPILE_FLAGS) src/*.cpp
-	$(GXX) -m32 -shared -o $(OUTFILE) *.o $(LIBRARIES) 
+	g++ $(COMPILE_FLAGS) src/sdk/*.cpp
+	g++ $(COMPILE_FLAGS) src/*.cpp
+	g++ -m32 -shared -static-libstdc++ -o $(OUTFILE) *.o $(LIBRARIES) 
 	
 clean:
 	rm -f *.o
