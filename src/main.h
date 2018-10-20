@@ -25,7 +25,7 @@
 
 #pragma once
 
-#define PLUGIN_VERSION                  "v1.6"
+#define PLUGIN_VERSION                  "v1.7"
 
 #ifndef CELL_SIZE
 #define CELL_SIZE                       4
