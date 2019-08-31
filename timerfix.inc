@@ -57,7 +57,7 @@ native IsValidTimer(timerid);
 native GetActiveTimers();
 
 /**
- * <summary>Kills all timers a player owns.</summary>
+ * <summary>Kills specified timer owned by player.</summary>
  * <param name="timerid">The ID of the timer.</param>
  */
 native KillPlayerTimer(timerid) = KillTimer;
