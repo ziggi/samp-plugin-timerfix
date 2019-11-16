@@ -56,6 +56,10 @@ const AMX_NATIVE_INFO PluginNatives[] =
 	{"SetTimerCount", Natives::SetTimerCount},
 	{"GetTimerCallsLeft", Natives::GetTimerCallsLeft},
 	{"IsValidTimer", Natives::IsValidTimer},
+	{"TimerFix_SetTimer", Natives::SetTimer},
+	{"TimerFix_SetTimerEx", Natives::SetTimerEx},
+	{"TimerFix_KillTimer", Natives::KillTimer},
+	{"TimerFix_GetTickCount", Natives::GetTickCount},
 
 	{NULL, NULL}
 };
@@ -76,11 +80,6 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx)
 {
-	amx_Redirect(amx, "SetTimer", reinterpret_cast<ucell>(Natives::SetTimer), NULL);
-	amx_Redirect(amx, "SetTimerEx", reinterpret_cast<ucell>(Natives::SetTimerEx), NULL);
-	amx_Redirect(amx, "KillTimer", reinterpret_cast<ucell>(Natives::KillTimer), NULL);
-	amx_Redirect(amx, "GetTickCount", reinterpret_cast<ucell>(Natives::GetTickCount), NULL);
-
 	return amx_Register(amx, PluginNatives, -1);
 }
 

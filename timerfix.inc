@@ -32,6 +32,16 @@
  * </remarks>
  */
 
+#define SetTimer TimerFix_SetTimer
+#define SetTimerEx TimerFix_SetTimerEx
+#define KillTimer TimerFix_KillTimer
+#define GetTickCount TimerFix_GetTickCount
+
+native TimerFix_SetTimer(const funcname[], interval, repeating);
+native TimerFix_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...);
+native TimerFix_KillTimer(timerid);
+native TimerFix_GetTickCount();
+
 /**
  * <summary>Same KillTimer is used for all types of timer.</summary>
  */
