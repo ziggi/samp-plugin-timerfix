@@ -32,6 +32,12 @@
  * </remarks>
  */
 
+#if defined _timerfix_included
+	#endinput
+#endif
+#define _timerfix_included
+#pragma library timerfix
+
 /**
  * <summary>Same KillTimer is used for all types of timer.</summary>
  */
