@@ -56,6 +56,7 @@ const AMX_NATIVE_INFO PluginNatives[] =
 	{"SetTimerCount", Natives::SetTimerCount},
 	{"GetTimerCallsLeft", Natives::GetTimerCallsLeft},
 	{"IsValidTimer", Natives::IsValidTimer},
+	{"GetActiveTimers", Natives::GetActiveTimers},
 
 	{NULL, NULL}
 };
