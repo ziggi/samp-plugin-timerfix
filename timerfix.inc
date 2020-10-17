@@ -24,13 +24,19 @@
  */
 
 /**
- * <version>1.7</version>
+ * <version>1.8</version>
  * <remarks>Supported parameters:
  * 		a, A = arrays (must be followed by an integer - array's szie);
  * 		b, B = boolean; c, C = character; d, D, i, I = integer;
  * 		s, S = string; p, P = player's ID, t, T = timer's ID
  * </remarks>
  */
+
+#if defined _timerfix_included
+	#endinput
+#endif
+#define _timerfix_included
+#pragma library timerfix
 
 #define SetTimer TimerFix_SetTimer
 #define SetTimerEx TimerFix_SetTimerEx
@@ -85,7 +91,7 @@ native KillPlayerTimers(playerid);
  * <param name="repeating">Whether this timer will repeat or will execute only one time.</param>
  * <returns>The ID of the timer.</returns>
  */
-//native SetTimer(func[], interval, repeating);
+//native SetTimer(const func[], interval, repeating);
 
 /**
  * <summary>Basic SetTimerEx.</summary>
@@ -95,7 +101,7 @@ native KillPlayerTimers(playerid);
  * <param name="format">Special format indicating the types of values the timer will pass.</param>
  * <returns>The ID of the timer.</returns>
  */
-//native SetTimerEx(func[], interval, repeating, const format[], {Float,_}:...);
+//native SetTimerEx(const func[], interval, repeating, const format[], {Float,_}:...);
 
 /**
  * <summary>An improved version of SetTimer.</summary>
@@ -105,7 +111,7 @@ native KillPlayerTimers(playerid);
  * <param name="count">How many times it should repeat before it's killed (-1 for unlimited).</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetTimer_(func[], interval, delay, count);
+native SetTimer_(const func[], interval, delay, count);
 
 /**
  * <summary>An improved version of SetTimerEx.</summary>
@@ -116,7 +122,7 @@ native SetTimer_(func[], interval, delay, count);
  * <param name="format">Special format indicating the types of values the timer will pass.</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetTimerEx_(func[], interval, delay, count, format[], {Float, _}:...);
+native SetTimerEx_(const func[], interval, delay, count,const  format[], {Float, _}:...);
 
 /**
  * <summary>Basic SetPlayerTimer.</summary>
@@ -126,7 +132,7 @@ native SetTimerEx_(func[], interval, delay, count, format[], {Float, _}:...);
  * <param name="repeating">Whether this timer will repeat or will execute only one time.</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetPlayerTimer(playerid, func[], interval, repeating);
+native SetPlayerTimer(playerid,const func[], interval, repeating);
 
 /**
  * <summary>Basic SetPlayerTimerEx.</summary>
@@ -137,7 +143,7 @@ native SetPlayerTimer(playerid, func[], interval, repeating);
  * <param name="format">Special format indicating the types of values the timer will pass.</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetPlayerTimerEx(playerid, func[], interval, repeating, const format[], {Float,_}:...);
+native SetPlayerTimerEx(playerid,const  func[], interval, repeating, const format[], {Float,_}:...);
 
 /**
  * <summary>An improved version of SetPlayerTimer.</summary>
@@ -148,7 +154,7 @@ native SetPlayerTimerEx(playerid, func[], interval, repeating, const format[], {
  * <param name="count">How many times it should repeat before it's killed (-1 for unlimited).</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetPlayerTimer_(playerid, func[], interval, delay, count);
+native SetPlayerTimer_(playerid, const func[], interval, delay, count);
 
 /**
  * <summary>An improved version of SetPlayerTimerEx.</summary>
@@ -160,7 +166,7 @@ native SetPlayerTimer_(playerid, func[], interval, delay, count);
  * <param name="format">Special format indicating the types of values the timer will pass.</param>
  * <returns>The ID of the timer.</returns>
  */
-native SetPlayerTimerEx_(playerid, func[], interval, delay, count, format[], {Float, _}:...);
+native SetPlayerTimerEx_(playerid, const func[], interval, delay, count, const format[], {Float, _}:...);
 
 /**
  * <summary>Gets the name of the function that is called.</summary>
@@ -168,7 +174,7 @@ native SetPlayerTimerEx_(playerid, func[], interval, delay, count, format[], {Fl
  * <param name="func">The name of the function.</param>
  * <param name="maxlength">Maximum length of the returned function name.</param>
  */
-native GetTimerFunctionName(timerid, func[], maxlength = sizeof(func));
+native GetTimerFunctionName(timerid, const func[], maxlength = sizeof(func));
 
 /**
  * <summary>Sets the interval of a timer.</summary>

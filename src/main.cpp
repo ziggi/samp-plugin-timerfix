@@ -60,6 +60,7 @@ const AMX_NATIVE_INFO PluginNatives[] =
 	{"TimerFix_SetTimerEx", Natives::SetTimerEx},
 	{"TimerFix_KillTimer", Natives::KillTimer},
 	{"TimerFix_GetTickCount", Natives::GetTickCount},
+	{"GetActiveTimers", Natives::GetActiveTimers},
 
 	{NULL, NULL}
 };
