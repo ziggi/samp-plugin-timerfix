@@ -24,13 +24,19 @@
  */
 
 /**
- * <version>1.7</version>
+ * <version>1.8</version>
  * <remarks>Supported parameters:
  * 		a, A = arrays (must be followed by an integer - array's szie);
  * 		b, B = boolean; c, C = character; d, D, i, I = integer;
  * 		s, S = string; p, P = player's ID, t, T = timer's ID
  * </remarks>
  */
+
+#if defined _timerfix_included
+	#endinput
+#endif
+#define _timerfix_included
+#pragma library timerfix
 
 /**
  * <summary>Same KillTimer is used for all types of timer.</summary>
